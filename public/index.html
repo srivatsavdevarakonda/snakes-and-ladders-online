@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snakes and Ladders Online</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="setup-screen">
+        <h1>Snakes & Ladders Online 🐍🪜</h1>
+
+        <div id="name-entry-box">
+            <input type="text" id="player-name-input" placeholder="Enter Your Name" maxlength="15">
+            <button id="submit-name-btn">Continue</button>
+        </div>
+        
+        <div id="instructions-screen" class="hidden">
+            <h2>How to Play</h2>
+            <ul>
+                <li>The goal is to be the first player to reach square 100.</li>
+                <li>On your turn, click "Roll Dice" to move your piece.</li>
+                <li>Landing on a ladder 🪜 will move you up to a higher square.</li>
+                <li>Landing on a snake 🐍 will make you slide down to a lower square.</li>
+                <li><b>Special Rule:</b> Rolling a 4 or 6 grants you an extra turn!</li>
+            </ul>
+            <button id="continue-to-lobby-btn">Continue to Lobby</button>
+        </div>
+
+        <div id="join-options" class="hidden">
+            <button id="create-game-btn">Create New Game</button>
+            <div class="join-box">
+                <input type="text" id="room-id-input" placeholder="Enter Game ID">
+                <button id="join-game-btn">Join Game</button>
+            </div>
+        </div>
+        
+        <div id="room-info" class="hidden">
+            <p>Share this Game ID with your friends:</p>
+            <h2 id="room-id-display"></h2>
+            <h3>Players in Lobby:</h3>
+            <ul id="player-list"></ul>
+            <button id="force-start-game-btn" class="hidden">Start Game</button>
+        </div>
+        <p id="error-message"></p>
+    </div>
+
+    <div id="game-screen" class="hidden">
+        <div class="game-container">
+            <div id="game-board">
+                <div id="snakes-ladders-container"></div>
+            </div>
+            <div class="controls">
+                <div id="player-turn"></div>
+                <div class="dice-container">
+                    <div id="dice" class="dice">
+                        <div class="face front"><span class="pip"></span></div>
+                        <div class="face back"><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+                        <div class="face right"><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+                        <div class="face left"><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+                        <div class="face top"><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+                        <div class="face bottom"><span class="pip"></span><span class="pip"></span></div>
+                    </div>
+                </div>
+                <button id="roll-button" disabled>Roll Dice</button>
+                <p id="extra-turn-message" class="hidden">Rolled a 4 or 6! Roll again!</p>
+            </div>
+        </div>
+        <div id="winner-message"></div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

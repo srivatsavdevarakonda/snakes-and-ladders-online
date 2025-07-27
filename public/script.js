@@ -95,7 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
         animateDice(roll, () => {
             updateBoard(state);
             const currentPlayer = state.players[state.currentPlayerIndex];
-            if ((roll === 4 || roll === 6) && currentPlayer.id === socket.id) {
+            // --- NEW LOGIC: Only check for a roll of 6 ---
+            if (roll === 6 && currentPlayer.id === socket.id) {
                 extraTurnMessage.classList.remove('hidden');
             }
         });
@@ -236,23 +237,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Corrected Dice Animation Function ---
     function animateDice(roll, callback) {
         const randomX = (Math.floor(Math.random() * 8) + 4) * 360;
         const randomY = (Math.floor(Math.random() * 8) + 4) * 360;
         let finalX = 0, finalY = 0;
 
-        // These angles correspond to the dice faces defined in the CSS
         switch (roll) {
-            case 1: finalX = 0;     finalY = 0;      break; // Front face
-            case 2: finalX = -90;   finalY = 0;      break; // Bottom face
-            case 3: finalX = 0;     finalY = -90;    break; // Left face
-            case 4: finalX = 0;     finalY = 90;     break; // Right face
-            case 5: finalX = 90;    finalY = 0;      break; // Top face
-            case 6: finalX = 0;     finalY = 180;    break; // Back face
+            case 1: break;
+            case 2: finalX = -90; break;
+            case 3: finalY = -90; break;
+            case 4: finalY = 90; break;
+            case 5: finalX = 90; break;
+            case 6: finalY = 180; break;
         }
         
         diceElement.style.transform = `rotateX(${randomX + finalX}deg) rotateY(${randomY + finalY}deg)`;
-        setTimeout(callback, 1600); // Wait for animation to complete
+        setTimeout(callback, 1600);
     }
 });

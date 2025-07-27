@@ -67,6 +67,8 @@ io.on('connection', (socket) => {
         let player = game.players[game.currentPlayerIndex];
 
         if (player.position + diceRoll <= boardSize) player.position += diceRoll;
+        
+        // --- NEW LOGIC: Resolve snakes/ladders immediately ---
         if (snakes[player.position]) player.position = snakes[player.position];
         else if (ladders[player.position]) player.position = ladders[player.position];
         
@@ -76,7 +78,8 @@ io.on('connection', (socket) => {
             return;
         }
 
-        if (diceRoll !== 4 && diceRoll !== 6) {
+        // --- NEW LOGIC: Only give extra turn on a 6 ---
+        if (diceRoll !== 6) {
             game.currentPlayerIndex = (game.currentPlayerIndex + 1) % game.players.length;
         }
         

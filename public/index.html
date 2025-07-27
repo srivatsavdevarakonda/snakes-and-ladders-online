@@ -19,10 +19,10 @@
             <h2>How to Play</h2>
             <ul>
                 <li>The goal is to be the first player to reach square 100.</li>
-                <li>On your turn, click "Roll Dice" to move your piece.</li>
-                <li>Landing on a ladder 🪜 will move you up to a higher square.</li>
-                <li>Landing on a snake 🐍 will make you slide down to a lower square.</li>
-                <li><b>Special Rule:</b> Rolling a 4 or 6 grants you an extra turn!</li>
+                <li>On your turn, roll the dice to move your piece.</li>
+                <li>If you land on a ladder's base 🪜, you climb up!</li>
+                <li>If you land on a snake's head 🐍, you slide down.</li>
+                <li><b>Special Rule:</b> Rolling a <b>6</b> lets you roll again after your move!</li>
             </ul>
             <button id="continue-to-lobby-btn">Continue to Lobby</button>
         </div>
@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <button id="roll-button" disabled>Roll Dice</button>
-                <p id="extra-turn-message" class="hidden">Rolled a 4 or 6! Roll again!</p>
+                <p id="extra-turn-message" class="hidden">You rolled a 6! Roll again!</p>
             </div>
         </div>
         <div id="winner-message"></div>
